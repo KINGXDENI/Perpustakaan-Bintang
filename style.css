@@ -1,0 +1,471 @@
+/* ==========================================================================
+   STYLE.CSS - Tema Earthy SaaS Premium (Perpustakaan Bintang)
+   ========================================================================== */
+
+/* Font & Variabel Global */
+:root, [data-theme="dark"] {
+    --bg-dark: #121211;              /* Graphite Gelap */
+    --bg-dark-glow: #1c1c1a;
+    --bg-body-radial-1: rgba(177, 116, 87, 0.15); /* Desert Clay glow */
+    --bg-body-radial-2: rgba(74, 73, 71, 0.35);  /* Graphite glow */
+    
+    /* Palet Warna Aksen Terarah */
+    --accent-gold: #B17457;       /* Desert Clay */
+    --accent-gold-glow: #c78668;
+    --accent-indigo: #B17457;     /* Desert Clay (untuk backward compatibility) */
+    --accent-indigo-hover: #9c6246;
+    --accent-primary: #B17457;    /* Desert Clay */
+    --accent-secondary: #D8D2C2;  /* Light Stone */
+    
+    /* Keterbacaan Premium */
+    --text-primary: #F9F7F0;     /* Milk */
+    --text-secondary: #D8D2C2;   /* Light Stone */
+    --text-muted: #8E8D8A;
+    
+    /* Lapisan Transparansi Kaca */
+    --glass-bg: rgba(74, 73, 71, 0.25); /* Graphite */
+    --glass-border: rgba(216, 210, 194, 0.12); /* Light Stone */
+    --glass-border-focus: rgba(177, 116, 87, 0.4); /* Desert Clay */
+    --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.45);
+    
+    /* Skema Status Transparan Lembut */
+    --status-success-bg: rgba(16, 185, 129, 0.08);
+    --status-success-text: #34d399;
+    --status-success-border: rgba(16, 185, 129, 0.15);
+    
+    --status-error-bg: rgba(239, 68, 68, 0.08);
+    --status-error-text: #f87171;
+    --status-error-border: rgba(239, 68, 68, 0.15);
+    
+    --accent-danger: #f87171;
+    --accent-danger-bg: rgba(239, 68, 68, 0.1);
+    --accent-danger-border: rgba(239, 68, 68, 0.2);
+    
+    --status-info-bg: rgba(59, 130, 246, 0.08);
+    --status-info-text: #60a5fa;
+    --status-info-border: rgba(59, 130, 246, 0.15);
+}
+
+[data-theme="light"] {
+    --bg-dark: #F9F7F0;          /* Milk */
+    --bg-dark-glow: #efece6;
+    --bg-body-radial-1: rgba(177, 116, 87, 0.08);
+    --bg-body-radial-2: rgba(216, 210, 194, 0.2);
+    
+    /* Palet Warna Aksen Terarah */
+    --accent-gold: #B17457;
+    --accent-gold-glow: #c78668;
+    --accent-indigo: #B17457;
+    --accent-indigo-hover: #9c6246;
+    --accent-primary: #B17457;
+    --accent-secondary: #4A4947; /* Graphite */
+    
+    /* Keterbacaan Premium */
+    --text-primary: #4A4947;     /* Graphite */
+    --text-secondary: #747371;   /* Stone / Slate Gelap */
+    --text-muted: #8E8D8A;
+    
+    /* Lapisan Transparansi Kaca */
+    --glass-bg: rgba(216, 210, 194, 0.3); /* Stone */
+    --glass-border: rgba(74, 73, 71, 0.1); /* Graphite */
+    --glass-border-focus: rgba(177, 116, 87, 0.4);
+    --glass-shadow: 0 8px 32px 0 rgba(74, 73, 71, 0.08);
+    
+    /* Skema Status Transparan Lembut */
+    --status-success-bg: rgba(16, 185, 129, 0.06);
+    --status-success-text: #059669;
+    --status-success-border: rgba(16, 185, 129, 0.12);
+    
+    --status-error-bg: rgba(220, 38, 38, 0.06);
+    --status-error-text: #dc2626;
+    --status-error-border: rgba(220, 38, 38, 0.12);
+    
+    --accent-danger: #c53030;
+    --accent-danger-bg: rgba(220, 38, 38, 0.08);
+    --accent-danger-border: rgba(220, 38, 38, 0.15);
+    
+    --status-info-bg: rgba(37, 99, 235, 0.06);
+    --status-info-text: #2563eb;
+    --status-info-border: rgba(37, 99, 235, 0.12);
+}
+
+/* Latar Belakang Semesta */
+body {
+    font-family: 'Outfit', sans-serif !important;
+    background-color: var(--bg-dark) !important;
+    background-image: 
+        radial-gradient(at 0% 0%, var(--bg-body-radial-1) 0, transparent 50%), 
+        radial-gradient(at 100% 100%, var(--bg-body-radial-2) 0, transparent 50%),
+        linear-gradient(180deg, var(--bg-dark) 0%, var(--bg-dark-glow) 100%) !important;
+    background-attachment: fixed !important;
+    background-size: cover !important;
+    color: var(--text-primary) !important;
+    min-height: 100vh;
+    transition: background-color 0.3s ease, color 0.3s ease, background-image 0.3s ease !important;
+}
+
+/* --------------------------------------------------------------------------
+   KOMPONEN KACA (GLASSMORPHISM)
+   -------------------------------------------------------------------------- */
+
+.glass-card {
+    background: var(--glass-bg) !important;
+    backdrop-filter: blur(16px) !important;
+    -webkit-backdrop-filter: blur(16px) !important;
+    border: 1px solid var(--glass-border) !important;
+    box-shadow: var(--glass-shadow) !important;
+    border-radius: 24px !important;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+.glass-card-hover {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+.glass-card-hover:hover {
+    transform: translateY(-4px) !important;
+    border-color: var(--glass-border-focus) !important;
+    box-shadow: 0 12px 40px 0 rgba(177, 116, 87, 0.15) !important;
+}
+
+/* Floating Navbar Kapsul Responsif */
+.floating-nav {
+    background: var(--glass-bg) !important;
+    backdrop-filter: blur(24px) !important;
+    -webkit-backdrop-filter: blur(24px) !important;
+    border: 1px solid var(--glass-border) !important;
+    border-radius: 20px !important;
+    max-w: 1152px !important; /* max-w-6xl */
+    margin: 16px auto !important;
+    box-shadow: var(--glass-shadow) !important;
+    padding: 8px 16px !important;
+    transition: all 0.3s ease !important;
+}
+
+/* Penunjuk Menu Aktif */
+.nav-active {
+    background: rgba(177, 116, 87, 0.1) !important;
+    color: var(--accent-primary) !important;
+    border: 1px solid rgba(177, 116, 87, 0.2) !important;
+    font-weight: 600 !important;
+}
+
+/* Dropdown Menu Kaca */
+.glass-dropdown-card {
+    background: var(--bg-dark-glow) !important;
+    backdrop-filter: blur(24px) !important;
+    -webkit-backdrop-filter: blur(24px) !important;
+    border: 1px solid var(--glass-border) !important;
+    box-shadow: var(--glass-shadow) !important;
+    color: var(--text-primary) !important;
+}
+
+.text-nav-dropdown-title {
+    color: var(--text-primary) !important;
+}
+
+.text-nav-dropdown-subtitle {
+    color: var(--text-secondary) !important;
+}
+
+/* --------------------------------------------------------------------------
+   TYPOGRAPHY & BRANDING
+   ========================================================================== */
+
+.text-clay-gradient, .text-indigo-gradient {
+    background: linear-gradient(135deg, #d98d6c 0%, var(--accent-primary) 100%) !important;
+    -webkit-background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
+    font-weight: 800 !important;
+}
+
+.text-gold-gradient {
+    background: linear-gradient(135deg, #f59e0b 0%, var(--accent-primary) 100%) !important;
+    -webkit-background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
+    font-weight: 800 !important;
+}
+
+/* --------------------------------------------------------------------------
+   INPUT & TOMBOL (CONTROLS)
+   ========================================================================== */
+
+/* Input Glass */
+.input-glass {
+    background: rgba(74, 73, 71, 0.1) !important;
+    border: 1px solid var(--glass-border) !important;
+    color: var(--text-primary) !important;
+    border-radius: 14px !important;
+    transition: all 0.2s ease-in-out !important;
+}
+
+.input-glass:focus {
+    border-color: var(--accent-primary) !important;
+    outline: none !important;
+    box-shadow: 0 0 12px rgba(177, 116, 87, 0.25) !important;
+    background: rgba(74, 73, 71, 0.15) !important;
+}
+
+/* Input with Icon Wrapper */
+.input-icon-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+.input-icon-wrapper .input-glass {
+    padding-left: 2.75rem !important;
+}
+
+.input-icon-wrapper .input-icon-left {
+    position: absolute;
+    left: 1rem;
+    pointer-events: none;
+    color: var(--text-muted);
+    transition: all 0.2s ease;
+}
+
+.input-icon-wrapper .input-glass:focus ~ .input-icon-left {
+    color: var(--accent-primary) !important;
+    transform: scale(1.05);
+}
+
+/* Placeholder readability in both modes */
+.input-glass::placeholder {
+    color: var(--text-muted) !important;
+    opacity: 0.65 !important;
+}
+
+/* Tombol Premium */
+.btn-premium {
+    background: linear-gradient(135deg, var(--accent-primary) 0%, #9c6246) !important;
+    color: #ffffff !important;
+    border: none !important;
+    border-radius: 14px !important;
+    font-weight: 600 !important;
+    letter-spacing: 0.025em !important;
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    box-shadow: 0 4px 14px rgba(177, 116, 87, 0.3) !important;
+}
+
+.btn-premium:hover {
+    transform: translateY(-1px) !important;
+    box-shadow: 0 6px 20px rgba(177, 116, 87, 0.5) !important;
+}
+
+.btn-premium-ghost {
+    background: rgba(142, 141, 138, 0.06) !important;
+    border: 1px solid var(--glass-border) !important;
+    color: var(--text-primary) !important;
+    border-radius: 14px !important;
+    transition: all 0.2s ease !important;
+}
+
+.btn-premium-ghost:hover {
+    background: rgba(142, 141, 138, 0.15) !important;
+    border-color: var(--accent-secondary) !important;
+}
+
+.btn-premium-danger {
+    background: rgba(239, 68, 68, 0.1) !important;
+    border: 1px solid rgba(239, 68, 68, 0.2) !important;
+    color: #f87171 !important;
+    border-radius: 14px !important;
+    transition: all 0.2s ease !important;
+}
+
+.btn-premium-danger:hover {
+    background: rgba(239, 68, 68, 0.2) !important;
+    border-color: rgba(239, 68, 68, 0.4) !important;
+    box-shadow: 0 0 15px rgba(239, 68, 68, 0.2) !important;
+}
+
+/* --------------------------------------------------------------------------
+   BADGE STATUS & ROLE (GLASS BADGES)
+   ========================================================================== */
+
+.badge-glass-admin {
+    background: rgba(177, 116, 87, 0.12) !important;
+    color: #e59c7a !important;
+    border: 1px solid rgba(177, 116, 87, 0.3) !important;
+    font-size: 10px !important;
+    font-weight: 700 !important;
+    letter-spacing: 0.05em !important;
+}
+
+.badge-glass-user {
+    background: rgba(216, 210, 194, 0.15) !important;
+    color: var(--text-primary) !important;
+    border: 1px solid rgba(216, 210, 194, 0.3) !important;
+    font-size: 10px !important;
+    font-weight: 700 !important;
+    letter-spacing: 0.05em !important;
+}
+
+.badge-glass-success {
+    background: var(--status-success-bg) !important;
+    color: var(--status-success-text) !important;
+    border: 1px solid var(--status-success-border) !important;
+    font-weight: 600 !important;
+}
+
+.badge-glass-error {
+    background: var(--status-error-bg) !important;
+    color: var(--status-error-text) !important;
+    border: 1px solid var(--status-error-border) !important;
+    font-weight: 600 !important;
+}
+
+.badge-glass-info {
+    background: var(--status-info-bg) !important;
+    color: var(--status-info-text) !important;
+    border: 1px solid var(--status-info-border) !important;
+    font-weight: 600 !important;
+}
+
+/* --------------------------------------------------------------------------
+   TABEL KUSTOM PREMIUM
+   ========================================================================== */
+
+.custom-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.custom-table th {
+    background: rgba(177, 116, 87, 0.04) !important;
+    color: var(--text-secondary) !important;
+    font-weight: 600 !important;
+    text-transform: uppercase;
+    font-size: 11px;
+    letter-spacing: 0.05em;
+    padding: 14px 16px !important;
+    border-bottom: 1px solid var(--glass-border) !important;
+}
+
+.custom-table td {
+    padding: 14px 16px !important;
+    border-bottom: 1px solid rgba(216, 210, 194, 0.06) !important;
+    color: var(--text-primary);
+}
+
+.custom-table tr:last-child td {
+    border-bottom: none !important;
+}
+
+.custom-table tr:hover td {
+    background: rgba(177, 116, 87, 0.015) !important;
+}
+
+/* --------------------------------------------------------------------------
+   MODAL & DIALOG
+   ========================================================================== */
+
+dialog.modal {
+    background: rgba(18, 18, 17, 0.6) !important;
+    backdrop-filter: blur(8px) !important;
+}
+
+dialog.modal .modal-box {
+    background: var(--bg-dark-glow) !important;
+    backdrop-filter: blur(20px) !important;
+    border: 1px solid var(--glass-border) !important;
+    box-shadow: var(--glass-shadow) !important;
+    border-radius: 24px !important;
+}
+
+/* --------------------------------------------------------------------------
+   SCROLLBAR & MISC DESIGN SYSTEM TOKENS
+   ========================================================================== */
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+
+::-webkit-scrollbar-track {
+    background: rgba(18, 18, 17, 0.5);
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgba(216, 210, 194, 0.2);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: rgba(177, 116, 87, 0.4);
+}
+
+/* Dot Cahaya Inspiratif */
+.glow-dot {
+    width: 8px;
+    height: 8px;
+    background-color: var(--accent-gold-glow);
+    border-radius: 50%;
+    box-shadow: 0 0 10px var(--accent-gold-glow);
+    display: inline-block;
+}
+
+.glow-dot-indigo {
+    width: 8px;
+    height: 8px;
+    background-color: var(--accent-primary);
+    border-radius: 50%;
+    box-shadow: 0 0 10px var(--accent-primary);
+    display: inline-block;
+}
+
+/* Notifikasi / Toast Alert */
+.toast-glass {
+    background: var(--bg-dark-glow) !important;
+    backdrop-filter: blur(12px) !important;
+    border: 1px solid var(--glass-border) !important;
+    box-shadow: var(--glass-shadow) !important;
+    border-radius: 16px !important;
+}
+
+/* Helper Ikon Lucide untuk SaaS */
+.lucide {
+    display: inline-block;
+    stroke-width: 2px;
+    width: 18px;
+    height: 18px;
+    color: currentColor;
+    vertical-align: middle;
+}
+.icon-indigo {
+    color: var(--accent-primary) !important;
+}
+.icon-gold {
+    color: var(--accent-gold-glow) !important;
+}
+.icon-success {
+    color: var(--status-success-text) !important;
+}
+.icon-error {
+    color: var(--status-error-text) !important;
+}
+.icon-muted {
+    color: var(--text-muted) !important;
+}
+
+.icon-brand {
+    color: var(--accent-primary) !important;
+}
+
+/* Helper Kelas Warna Tema */
+.text-primary-theme {
+    color: var(--text-primary) !important;
+}
+.text-secondary-theme {
+    color: var(--text-secondary) !important;
+}
+.badge-premium-ghost {
+    background: rgba(142, 141, 138, 0.08) !important;
+    border: 1px solid var(--glass-border) !important;
+    color: var(--text-secondary) !important;
+    font-weight: 500;
+}
+
